@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.box {
+  background: rgba(255,255,255,0.15);
+  padding: 25px;
+  border-radius: 25px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  max-width: 380px;
+  z-index: 2;
+}
+
+h1 {
+  margin: 0 0 15px 0;
+}
+
+button {
+  padding: 12px 26px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  margin: 8px;
+}
+
+.yes {
+  background: #ff2d55;
+  color: white;
+}
+
+.no {
+  background: #333;
+  color: white;
+  position: absolute;
+}
+
+img {
+  width: 100%;
+  border-radius: 18px;
+  margin-top: 10px;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-120vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Question -->
+<div class="box" id="questionBox">
+  <h1>Will you be my Valentine? 💖</h1>
+  <button class="yes" onclick="yesClicked()">Yes 💘</button>
+  <button class="no" id="noBtn" onmouseover="moveNo()">No 💔</button>
+</div>
+
+<!-- Result -->
+<div class="box hidden" id="loveBox">
+  <h1>I know you’ll say yes 😅</h1>
+  <img src="us.jpg" alt="Us Together">
+</div>
+
+<script>
+function yesClicked() {
+  document.getElementById("questionBox").classList.add("hidden");
+  document.getElementById("loveBox").classList.remove("hidden");
+}
+
+function moveNo() {
+  const btn = document.getElementById("noBtn");
+  btn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+  btn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+}
+
+// hearts
+setInterval(() => {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 500);
+</script>
+
+</body>
+</html>
